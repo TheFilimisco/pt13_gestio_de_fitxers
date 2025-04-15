@@ -1,10 +1,10 @@
-package exercise4;
+package exercise6;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Exercise4 {
+public class Exercise6 {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         var running = true;
@@ -20,23 +20,22 @@ public class Exercise4 {
                 }
             }
 
+            File folder = new File("src/exercise6/" + nameDirectory);
 
-            File folder = new File("src/exercise4/inventory/" + nameDirectory);
+            // If folder exist, but without file
             if (folder.exists()){
                 File[] folderFiles = folder.listFiles();
                 assert folderFiles != null;
-                for (File fi: folderFiles){
-                    System.out.println("========================================");
-                    System.out.println("Name: " + fi.getName());
-                    System.out.println("Absolut routh: " + fi.getAbsolutePath());
-                    System.out.println("Can Write: " + fi.canWrite());
-                    System.out.println("Can Read: " + fi.canRead());
-                    System.out.println("Size: " + fi.length() + " bytes");
+                if (folderFiles.length == 0){
+                    File file = new File(folder, nameDirectory);
+                    System.out.println(file.createNewFile());
                 }
-
-                System.out.println("Folder exists!");
             } else {
-                System.out.println("Folder not exists!");
+                // When files and folder doesn't exist! it created all
+                File directory = new File(String.valueOf(folder));
+                System.out.println(directory.mkdir());
+                File file = new File(directory, nameDirectory);
+                System.out.println(file.createNewFile());
             }
 
             System.out.print("Stop running... (yes)?");
