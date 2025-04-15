@@ -27,14 +27,14 @@ public class Exercise6 {
                 File[] folderFiles = folder.listFiles();
                 assert folderFiles != null;
                 if (folderFiles.length == 0){
-                    File file = new File(folder, nameDirectory);
+                    File file = new File(folder, nameDirectory+".txt");
                     System.out.println(file.createNewFile());
                 }
             } else {
                 // When files and folder doesn't exist! it created all
                 File directory = new File(String.valueOf(folder));
                 System.out.println(directory.mkdir());
-                File file = new File(directory, nameDirectory);
+                File file = new File(directory, nameDirectory+".txt");
                 System.out.println(file.createNewFile());
             }
 
